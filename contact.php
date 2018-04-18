@@ -61,6 +61,7 @@ th, td {
     <a href="about.php" class="w3-bar-item w3-button w3-padding-16"><i class="fa fa-info"></i> About US</a>
     <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-16" onclick="document.getElementById('subscribe').style.display='block'"><i class="fa fa-rss"></i> Subscribe</a>
     <a href="contact.php" class="w3-bar-item w3-button w3-padding-16"><i class="fa fa-envelope"></i> Contact</a>
+     <a href="review.php" class="w3-bar-item w3-button w3-padding-16"><i class="fa fa-search"></i> Review</a>
   </div>
 </nav>
 
@@ -78,7 +79,9 @@ th, td {
 
   <!-- Push down content on small screens -->
   <div class="w3-hide-large" style="margin-top:80px"></div>
-<a href="mybooking.php"><h2 class="w3-text-blue" style="float: left"> Hi <?php echo $_SESSION['userData']['first_name']; ?></h2></a><h2 style="float:right; color: white;"><a href="login/logout.php">LOGOUT</a></h2>  <div class="w3-container">
+<a href="mybooking.php"><h2 class="w3-text-blue" style="float: left"> Hi <?php echo $_SESSION['userData']['first_name']; ?></h2></a><h2 style="float:right; color: white;"><a href="login/logout.php">LOGOUT</a></h2>  
+
+<div class="w3-container">
     <!--h2 class="w3-text-blue w3-light-grey"><strong><?php echo $var1;?></strong></h2><br-->
     <h2>Questions? Go ahead, ask them:</h2>
     <form action="#contact.php" target="_blank" method="post">

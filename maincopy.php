@@ -4,6 +4,10 @@ if(!isset($_SESSION['userData']))
   {
     header("location:login/index.php");
   }
+//echo "<h1>".$_SESSION['userData']['first_name']."</h1>";
+setcookie("user", $_SESSION['userData']['first_name'], time()+(86400*30));
+setcookie("Oauth_uid", $_SESSION['userData']['oauth_uid'], time()+(86400*30));
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -60,6 +64,7 @@ th, td {
     <a href="about.php" class="w3-bar-item w3-button w3-padding-16"><i class="fa fa-info"></i> About US</a>
     <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-16" onclick="document.getElementById('subscribe').style.display='block'"><i class="fa fa-rss"></i> Subscribe</a>
     <a href="contact.php" class="w3-bar-item w3-button w3-padding-16"><i class="fa fa-envelope"></i> Contact</a>
+    <a href="review.php" class="w3-bar-item w3-button w3-padding-16"><i class="fa fa-search"></i> Review</a>
   </div>
 </nav>
 

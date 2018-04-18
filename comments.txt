@@ -1,0 +1,2 @@
+header("location:xss.php”);<hr/> 
+<?php header("location:xss.php”); ?><hr/> 

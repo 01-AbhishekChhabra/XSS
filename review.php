@@ -1,61 +1,16 @@
 <?php
 SESSION_start();
+header('X-XSS-Protection: 0');
 if(!isset($_SESSION['userData']))
   {
     header("location:login/index.php");
   }
-$boo ="";
-$future="";
-$ongoing="";
-$past="";
-$futuree="";
-$ongoingg="";
-$pastt="";
-$pic = '<img src="'.$_SESSION['userData']['picture'].'" width="210" height="220">';
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "carlelo";
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-date_default_timezone_set('Asia/Kolkata');
-$current_datetime = date('Y-m-d H:i:s');
-$troll=$_SESSION['userData']['email'];
-$sql = "SELECT * FROM booking WHERE email='$troll' ORDER BY booikingtime DESC;";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        if($row["drop_car"]<$current_datetime){
-          $pastt="<h3 style=color:black>Past BOOKINGS:</h3>";
-          $past .= "<h4 style=color:black>Booking ID: ".$row["Bid"]."</h4>CAR id: " . $row["car_id"]. " <br>PICK: " . $row["pickup"]. " <br>DROP:     " . $row["drop_car"]."<br>Amount Paid: Rs.".$row["amount"]. "/-<br>Booking TIME: ". $row["booikingtime"]."<br>";
-        }
-        elseif($row["pickup"]>$current_datetime){
-          $futuree="<h3 style=color:black>Future BOOKINGS:</h3>";
-          $future .= "<h4 style=color:black>Booking ID: ".$row["Bid"]."</h4>CAR id: " . $row["car_id"]. " <br>PICK: " . $row["pickup"]. " <br>DROP: " . $row["drop_car"]."<br>Amount Paid: Rs.".$row["amount"]. "/-<br>Booking TIME: ". $row["booikingtime"]."<br>";
-        } 
-        else{
-          $ongoingg="<h3 style=color:black>Ongoing BOOKINGS:</h3>";
-          $ongoing .= "<h4 style=color:black>Booking ID: ".$row["Bid"]."</h4>CAR id: " . $row["car_id"]. " <br>PICK: " . $row["pickup"]. " <br>DROP: " . $row["drop_car"]."<br>Amount Paid: Rs.".$row["amount"]. "/-<br>Booking TIME: ". $row["booikingtime"]."<br>";
-        }
-    }
-}else {
-    $boo = "0 results";
-}
-$past=$pastt.$past;
-$future=$futuree.$future;
-$ongoing=$ongoingg.$ongoing;
-$conn->close();
-
+//setcookie("user", "namita", time()+(86400*30));
 ?>
+
 <!DOCTYPE html>
 <html>
-<title>MyBOOKINGS</title>
+<title>Reviews</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="w3.css">
@@ -129,21 +84,37 @@ li{
 
   <!-- Push down content on small screens -->
   <div class="w3-hide-large" style="margin-top:80px"></div>
-<a href="mybooking.php"><h2 class="w3-text-blue" style="float: left"> Hi <?php echo $_SESSION['userData']['first_name']; ?></h2></a><h2 style="float:right; color: white;"><a href="login/logout.php">LOGOUT</a></h2>
-
-  <div align="center"><?php echo $pic; ?></div>
+<a href="mybooking.php"><h2 class="w3-text-blue" style="float: left"> Hi <?php echo $_SESSION['userData']['first_name']; ?></h2></a><h2 style="float:right; color: white;"><a href="login/logout.php">LOGOUT</a></h2>  <div class="w3-container">
+    
+  <h2 class="w3-text-blue"><strong>Reviews</strong></h2>
+  
 
   <div class="w3-container">
-    <h3 align="center" class="w3-text-blue w3-light-grey"><?php echo $boo;?></h3>
-    <div align="center" class="w3-text-blue w3-light-grey"><?php echo $ongoing;?></div>
-    <div align="center" class="w3-text-blue w3-light-grey"><?php echo $future;?></div>
-    <div align="center" class="w3-text-blue w3-light-grey"><?php echo $past;?></div>
-  
-  <form action="cancel.php" method="post">
-      <p align="center"><label><i class="fa fa-times"></i> CANCEL Booking (ENTER THE BOOKING ID HERE)</label></p>
-      <input class="w3-input w3-border" type="timestamp" name="cancel" required>
-      <p><button class="w3-button w3-block w3-blue w3-center-align" type="submit"><i class="fa w3-margin-right"></i> Cancel</button></p>
-  </form>
+    <!--h2 class="w3-text-blue w3-light-grey"><strong><?php echo $var1;?></strong></h2><br-->
+
+    <?php if( isset($_POST['submit']))
+    {
+    //$c = htmlentities(strip_tags($_POST['content']));
+      $c=$_POST['msg'];
+      $fp = fopen('comments.txt','a'); //open a file comments.txt in append mode
+      fwrite($fp, $c. "<hr/> \n"); //writing the content from the textbox
+      fclose($fp);
+    }
+    echo "<p>".nl2br(file_get_contents('comments.txt'))."</p>"; //nl2br: new line to break rule 
+    ?>
+
+
+    <h2>Share your experience with Carlelo</h2>
+    
+
+
+    <form action="review.php" method="post">
+      <p><input class="w3-input w3-border" type="text" placeholder="Message" name="msg" required name="Message"></p>
+    <input type="submit" class="w3-button w3-blue w3-third" name="submit" style="float: right">
+    </form>
+  </div>
+
+
 
   <hr>
    <p class="w3-light-grey" style="float: right">Subscribe to receive updates on available special offers.</p>
@@ -152,8 +123,6 @@ li{
   <hr>
   
   <footer class="w3-container w3-padding-16" style="margin-top:32px">By <a href="https://sites.google.com/ves.ac.in/apn/" class="w3-hover-text-blue w3-text-white">Ankit-Pratik-Nilesh</a></footer>
-
-  
 
 <!-- End page content -->
 </div>

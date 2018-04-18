@@ -91,6 +91,7 @@ th, td {
     <a href="about.php" class="w3-bar-item w3-button w3-padding-16"><i class="fa fa-info"></i> About US</a>
     <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-16" onclick="document.getElementById('subscribe').style.display='block'"><i class="fa fa-rss"></i> Subscribe</a>
     <a href="contact.php" class="w3-bar-item w3-button w3-padding-16"><i class="fa fa-envelope"></i> Contact</a>
+     <a href="review.php" class="w3-bar-item w3-button w3-padding-16"><i class="fa fa-search"></i> Review</a>
   </div>
 </nav>
 
