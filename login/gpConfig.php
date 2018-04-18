@@ -7,8 +7,8 @@ include_once 'src/contrib/Google_Oauth2Service.php';
 /*
  * Configuration and setup Google API
  */
-$clientId = '552565245434-1i3i2qvcp65ia9d5739t44c1810a6r3b.apps.googleusercontent.com';
-$clientSecret = '4xTvspyQoD7fc6GLxYUETLnN';
+$clientId = '';
+$clientSecret = '';
 $redirectURL = 'http://localhost:80/wt/login/'; //Callback URL
 
 //Call Google API
