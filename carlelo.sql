@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 20, 2018 at 06:31 PM
+-- Generation Time: Apr 18, 2018 at 05:29 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -89,7 +89,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `oauth_uid`, `first_name`, `last_name`, `email`, `picture`, `created`, `modified`) VALUES
-(4, '101862411961653884611', 'ANKIT', 'DALAL', '2015ankit.dalal@ves.ac.in', 'https://lh5.googleusercontent.com/-yoGxA1ECP3E/AAAAAAAAAAI/AAAAAAAAAQ8/BD3mEcLJdvo/photo.jpg', '2018-03-20 18:19:38', '2018-03-20 18:20:04');
+(4, '101862411961653884611', 'ANKIT', 'DALAL', '2015ankit.dalal@ves.ac.in', 'https://lh5.googleusercontent.com/-yoGxA1ECP3E/AAAAAAAAAAI/AAAAAAAAAQ8/BD3mEcLJdvo/photo.jpg', '2018-03-20 18:19:38', '2018-04-18 08:01:22');
 
 --
 -- Indexes for dumped tables
